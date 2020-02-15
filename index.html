@@ -25,7 +25,16 @@
     container: "tp-weather-widget"
   })
 </script>
-
+<?php
+header("Content-Type: text/html; charset=utf-8");  		
+$data = file_get_contents ('http://api.tianapi.com/txapi/ncov/index?key=4d3f2aba2b05893df5db7313c5293f05' );//API接口
+      $json = json_decode($data,true);//将json解析成数组
+      if($json['code'] == 200){ //判断状态码
+		  print_r($json); //打印数组
+	}else{	
+		echo "返回错误，状态消息：".$json['msg'];
+	  }
+?>
 <center><h2>感谢CJW天马神坑</h2></center>
 <style type="text/css">
 body {background-image:url(https://open.saintic.com/api/bingPic/); background-repeat:no-repeat; background-attachment:fixed} </style> 
